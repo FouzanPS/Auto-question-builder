@@ -7,13 +7,16 @@ const App = () => {
 
   const handleGenerate = async (topic, numQuestions) => {
     try {
-      const res = await fetch("http://localhost:3000/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ topic, numQuestions }),
-      });
+      const res = await fetch(
+        "https://auto-question-builder.vercel.app/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ topic, numQuestions }),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to fetch questions");
