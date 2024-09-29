@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const QuestionForm = ({ onGenerate }) => {
+const QuestionForm = ({ onGenerate, loading }) => {
   const [topic, setTopic] = useState("");
   const [numQuestions, setNumQuestions] = useState(1);
   const [questionType, setQuestionType] = useState("Multiple choice question");
@@ -31,10 +31,12 @@ const QuestionForm = ({ onGenerate }) => {
         type="number"
         placeholder="Number of questions"
         value={numQuestions}
-        onChange={(e) => setNumQuestions(Number(e.target.value))}
+        onChange={(e) => setNumQuestions(parseInt(e.target.value, 10))}
+        min="1"
         required
         className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+
       <select
         value={questionType}
         onChange={(e) => setQuestionType(e.target.value)}
@@ -47,11 +49,15 @@ const QuestionForm = ({ onGenerate }) => {
         <option value="Assessments">Assessments</option>
         <option value="Case studies">Case studies</option>
       </select>
+
+      {/* Button displays "Generating..." if loading, and is disabled during loading */}
       <button
         type="submit"
-        className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+        className="bg-black text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300"
+        disabled={loading} // Disable the button while loading
       >
-        Generate Questions
+        {loading ? "Generating..." : "Generate Questions"}{" "}
+        {/* Change text based on loading state */}
       </button>
     </form>
   );
