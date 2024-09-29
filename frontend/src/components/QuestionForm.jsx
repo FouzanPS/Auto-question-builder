@@ -3,11 +3,12 @@ import React, { useState } from "react";
 const QuestionForm = ({ onGenerate }) => {
   const [topic, setTopic] = useState("");
   const [numQuestions, setNumQuestions] = useState(1);
+  const [questionType, setQuestionType] = useState("Multiple choice question");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (typeof onGenerate === "function") {
-      onGenerate(topic, numQuestions);
+      onGenerate(topic, numQuestions, questionType);
     } else {
       console.error("onGenerate is not a function");
     }
@@ -34,6 +35,18 @@ const QuestionForm = ({ onGenerate }) => {
         required
         className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+      <select
+        value={questionType}
+        onChange={(e) => setQuestionType(e.target.value)}
+        required
+        className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="Multiple choice question">
+          Multiple choice question
+        </option>
+        <option value="Assessments">Assessments</option>
+        <option value="Case studies">Case studies</option>
+      </select>
       <button
         type="submit"
         className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
