@@ -57,7 +57,6 @@ const QuestionForm = ({ onGenerate, loading }) => {
         disabled={loading} // Disable the button while loading
       >
         {loading ? "Generating..." : "Generate Questions"}{" "}
-        {/* Change text based on loading state */}
       </button>
     </form>
   );
