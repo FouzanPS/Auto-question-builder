@@ -46,7 +46,7 @@ const App = () => {
       <h1 className="text-4xl font-bold mb-6 text-black head">
         Question Generator
       </h1>
-      {/* Pass the loading state as a prop to QuestionForm */}
+      {/* passing the loading state as a prop to QuestionForm */}
       <QuestionForm onGenerate={handleGenerate} loading={loading} />
       <QuestionList questions={questions} />
     </div>
